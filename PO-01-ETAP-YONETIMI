@@ -1,0 +1,1280 @@
+# 📋 PO-01: DİNAMİK ETAP OLUŞTURMA VE YÖNETİM SİSTEMİ
+
+## 🎯 Executive Summary
+
+### Modül Amacı
+Merkez personelinin kod yazmadan, tamamen arayüz üzerinden yeni hibe etapları oluşturabilmesi, başvuru formlarını özelleştirebilmesi, değerlendirme kriterlerini tanımlayabilmesi ve tüm süreci dinamik olarak yönetebilmesi.
+
+### Temel Özellikler
+- ✅ **10 Adımlı Etap Oluşturma Sihirbazı**: Karmaşık etap kurulumunu basit adımlara böler
+- ✅ **Sürükle-Bırak Form Tasarımcısı**: Kod yazmadan form alanları oluşturma
+- ✅ **Dinamik Kriter Motoru**: Değerlendirme kriterlerini ağırlıklandırma ve formülize etme
+- ✅ **Şablon Sistemi**: Geçmiş etaplardan kopyalama ve şablonlaştırma
+- ✅ **Bütçe Dağılım Yönetimi**: İl bazlı bütçe tahsisi ve limit kontrolü
+- ✅ **Versiyon Kontrolü**: Etap değişikliklerini izleme ve geri alma
+- ✅ **Önizleme Modu**: Yayınlamadan önce tüm ekranları test etme
+
+### İş Değeri
+- **%90 Kod Gereksinimini Azaltır**: Her yeni etap için geliştirici ihtiyacını ortadan kaldırır
+- **%70 Daha Hızlı Lansuman**: Yeni etap açılışı 3 aydan 1 haftaya düşer
+- **%100 Esneklik**: Politika değişikliklerine anında adapte olma
+- **%50 Hata Oranı Azalması**: Validasyonlar ve önizleme ile hataları önleme
+
+---
+
+## 👥 User Personas
+
+### Persona 1: Uzman Zeynep (Merkez Program Koordinatörü)
+
+**Demografik Bilgiler:**
+- **Yaş**: 38
+- **Eğitim**: Tarım Ekonomisi Doktora
+- **Pozisyon**: Merkez Program Koordinatörü
+- **Deneyim**: 12 yıl kamu
+
+**Hedefler:**
+- Yeni politikalara uygun etapları hızlıca hayata geçirmek
+- Her il için farklı öncelik alanları belirlemek
+- Bütçeyi adaletli ve verimli dağıtmak
+- Değerlendirme süreçlerini standartlaştırmak
+
+**Pain Points:**
+- Eski sistemde her değişiklik için IT'ye bağımlılık
+- Etap açılışı 2-3 ay sürüyor, politika fırsatları kaçıyor
+- Excel'de manuel bütçe hesaplamaları, hataya açık
+- İller arası kriter farklılıkları, şeffaflık sorunu
+
+**Davranış Kalıpları:**
+- Günde 3-4 saat etap planlama yapar
+- Geçmiş etap verilerini analiz eder
+- İl müdürlükleri ile sürekli koordinasyon halinde
+- Detaycıdır, her senaryoyu düşünür
+
+**Teknoloji Yetkinliği:**
+- İleri düzey Excel, Power BI kullanır
+- Orta düzey sistem kullanımı
+- Drag-drop arayüzlere aşina
+- Video tutorial ile hızlı öğrenir
+
+**Success Criteria:**
+- Etap kurulumu 1 haftada tamamlanmalı
+- Bütçe dağılımı otomatik hesaplanmalı
+- Değişiklikleri IT'ye sormadan yapabilmeli
+- Tüm süreci tek ekrandan yönetebilmeli
+
+---
+
+### Persona 2: Müdür Kemal (Genel Müdür Yardımcısı)
+
+**Demografik Bilgiler:**
+- **Yaş**: 52
+- **Eğitim**: Kamu Yönetimi Yüksek Lisans
+- **Pozisyon**: Genel Müdür Yardımcısı
+- **Deneyim**: 25 yıl kamu
+
+**Hedefler:**
+- Stratejik hedefleri operasyonel planlara çevirmek
+- Kaynakları öncelikli sektörlere yönlendirmek
+- Şeffaf ve denetlenebilir süreçler oluşturmak
+- Ulusal tarım politikalarını sahada hayata geçirmek
+
+**Pain Points:**
+- Üst yönetimden gelen ani politika değişiklikleri
+- Bütçe onayı aldıktan sonra sistemin hazır olmaması
+- Her etap için ayrı brifing, çok zaman alıcı
+- Raporlama zorlukları, karar almada gecikme
+
+**Davranış Kalıpları:**
+- Haftada 1-2 kez etap onayları yapar
+- Dashboard'dan özet bilgilere bakar
+- Detaya inmez, özetleri tercih eder
+- Mobil cihazdan da erişmek ister
+
+**Teknoloji Yetkinliği:**
+- Temel bilgisayar kullanımı
+- Dashboard ve raporlara aşina
+- Basit, sezgisel arayüzler tercih eder
+- Asistan desteği ile sistem kullanır
+
+**Success Criteria:**
+- Etap durumunu tek bakışta görebilmeli
+- Onay süreçleri mobil cihazdan yapılabilmeli
+- Bütçe kullanımı gerçek zamanlı görünmeli
+- Risk ve uyarılar proaktif bildirilmeli
+
+---
+
+## 📖 User Stories
+
+### Epic 1: Etap Oluşturma ve Yapılandırma
+
+#### US-001: Yeni Etap Oluşturma Sihirbazı
+
+**As a** Merkez Program Koordinatörü (Zeynep)
+**I want** adım adım rehberlik ile yeni etap oluşturmak
+**So that** karmaşık kurulumu kolay ve hatasız yapabileyim
+
+**Acceptance Criteria:**
+- ✅ Sihirbaz 10 adımdan oluşur: (1) Genel Bilgiler, (2) Bütçe, (3) Hedef Kitle, (4) Başvuru Formu, (5) Döküman Listesi, (6) Değerlendirme Kriterleri, (7) İl Limitleri, (8) Bildirimler, (9) İş Akışı, (10) Önizleme
+- ✅ Her adımda "Kaydet ve Devam Et", "Geri", "Taslak Olarak Kaydet" butonları var
+- ✅ İlerleme çubuğu hangi adımda olduğunu gösterir
+- ✅ Zorunlu alanlar doldurulmadan ileri gidilemez
+- ✅ Her adımda yardım metni ve örnek gösterilir
+- ✅ Taslak kaydedilip daha sonra devam edilebilir
+
+**Story Points:** 21
+**Priority:** CRITICAL
+**Sprint:** 1-2
+
+---
+
+#### US-002: Şablondan Etap Oluşturma
+
+**As a** Merkez Program Koordinatörü (Zeynep)
+**I want** geçmiş etapları şablon olarak kullanmak
+**So that** benzer etapları sıfırdan kurmak zorunda kalmayayım
+
+**Acceptance Criteria:**
+- ✅ Geçmiş etaplar listesinde "Şablon Olarak Kullan" butonu var
+- ✅ Şablon seçildiğinde tüm konfigürasyon kopyalanır
+- ✅ Kullanıcı kopyalanan her bölümü düzenleyebilir
+- ✅ Şablon adı ve açıklaması değiştirilebilir
+- ✅ "Özel Şablon Olarak Kaydet" seçeneği ile kendi şablonları oluşturulabilir
+- ✅ Sistem şablonları (Seracılık, Hayvancılık vb.) hazır gelir
+
+**Story Points:** 13
+**Priority:** HIGH
+**Sprint:** 2
+
+---
+
+#### US-003: Dinamik Form Tasarlama
+
+**As a** Merkez Program Koordinatörü (Zeynep)
+**I want** sürükle-bırak ile başvuru formunu tasarlamak
+**So that** her etap için özel formlar oluşturabileyim
+
+**Acceptance Criteria:**
+- ✅ Sol panelde alan tipleri listelenir: Metin, Sayı, Tarih, Dosya, Dropdown, Checkbox, Radio, Tablo, Koşullu Alan
+- ✅ Alanlar sürükle-bırak ile form alanına eklenir
+- ✅ Her alan için özellikler paneli açılır: Etiket, Placeholder, Zorunluluk, Validasyon, Yardım Metni
+- ✅ Koşullu görünürlük tanımlanabilir (örn: "Hayvancılık" seçilince "Hayvan Sayısı" alanı görünsün)
+- ✅ Alanlar gruplanabilir ve bölümlere ayrılabilir
+- ✅ Önizleme modunda formun son hali görülür
+- ✅ JSON şeması otomatik üretilir ve kaydedilir
+
+**Story Points:** 21
+**Priority:** CRITICAL
+**Sprint:** 2-3
+
+---
+
+#### US-004: Değerlendirme Kriterleri Tanımlama
+
+**As a** Merkez Program Koordinatörü (Zeynep)
+**I want** değerlendirme kriterlerini ağırlıklandırarak tanımlamak
+**So that** objektif ve şeffaf puanlama yapılabilsin
+
+**Acceptance Criteria:**
+- ✅ Kriter ekleme arayüzü ile yeni kriterler oluşturulur
+- ✅ Her kriter için: Ad, Açıklama, Maksimum Puan, Ağırlık (%) girilir
+- ✅ Alt kriterler tanımlanabilir (örn: "Proje Fizibilitesi" altında "Pazar Analizi", "Maliyet Analizi")
+- ✅ Toplam ağırlık %100 olmalı, aksi halde uyarı verir
+- ✅ Puanlama formülü tanımlanabilir (örn: Hayvan sayısı × 5 puan)
+- ✅ Otomatik puanlama kuralları eklenebilir
+- ✅ Kriter şablonları seçilebilir
+
+**Story Points:** 13
+**Priority:** CRITICAL
+**Sprint:** 3
+
+---
+
+#### US-005: İl Bazlı Bütçe Tahsisi
+
+**As a** Merkez Program Koordinatörü (Zeynep)
+**I want** her ile bütçe limiti belirlemek
+**So that** kaynaklar dengeli dağıtılsın
+
+**Acceptance Criteria:**
+- ✅ Türkiye haritası üzerinde iller gösterilir
+- ✅ Her il için bütçe limiti manuel veya formül ile belirlenir
+- ✅ Formül seçenekleri: Eşit dağıtım, Nüfus bazlı, Tarım alanı bazlı, Özel formül
+- ✅ Toplam bütçe otomatik hesaplanır ve genel bütçe ile karşılaştırılır
+- ✅ İl bazlı maksimum başvuru sayısı sınırı konulabilir
+- ✅ Bütçe dağılımı Excel'e aktarılabilir
+
+**Story Points:** 8
+**Priority:** HIGH
+**Sprint:** 3
+
+---
+
+#### US-006: Etap Durum Yönetimi
+
+**As a** Merkez Program Koordinatörü (Zeynep)
+**I want** etap durumlarını (Taslak, Aktif, Askıda, Kapalı) yönetmek
+**So that** etapların yaşam döngüsünü kontrol edebiliyim
+
+**Acceptance Criteria:**
+- ✅ Etap durumları: Taslak → Onay Bekliyor → Aktif → Askıda → Kapalı
+- ✅ Her durum geçişi için onay mekanizması var
+- ✅ Aktif etaplar vatandaşa açılır, diğerleri görünmez
+- ✅ Askıya alma nedeni zorunlu olarak girilir
+- ✅ Kapatma işleminde özet rapor oluşturulur
+- ✅ Durum geçmiş kaydı tutulur (kim, ne zaman, neden)
+
+**Story Points:** 5
+**Priority:** HIGH
+**Sprint:** 4
+
+---
+
+#### US-007: Versiyon Kontrolü ve Geri Alma
+
+**As a** Merkez Program Koordinatörü (Zeynep)
+**I want** etap değişikliklerinin versiyonlarını görmek ve geri alabilmek
+**So that** hatalı değişiklikleri düzeltebiliyim
+
+**Acceptance Criteria:**
+- ✅ Her kayıt işlemi yeni versiyon oluşturur
+- ✅ Versiyon listesinde: Tarih, Kullanıcı, Değişiklik Özeti görünür
+- ✅ İki versiyon arasında fark görülebilir (diff view)
+- ✅ Eski versiyona geri dönülebilir (rollback)
+- ✅ Aktif etaplarda rollback yapılırsa uyarı verilir
+- ✅ Son 50 versiyon saklanır
+
+**Story Points:** 8
+**Priority:** MEDIUM
+**Sprint:** 5
+
+---
+
+### Epic 2: Etap İzleme ve Raporlama
+
+#### US-008: Etap Dashboard'u
+
+**As a** Genel Müdür Yardımcısı (Kemal)
+**I want** tüm etapların durumunu tek ekranda görmek
+**So that** hızlıca durum değerlendirmesi yapabileyim
+
+**Acceptance Criteria:**
+- ✅ Aktif etaplar kartlar şeklinde listelenir
+- ✅ Her kartta: Etap Adı, Başvuru Sayısı, Bütçe Kullanımı (%), Kalan Süre gösterilir
+- ✅ Renk kodları: Yeşil (sorunsuz), Sarı (dikkat), Kırmızı (risk)
+- ✅ Filtreleme: Durum, Tarih, Bütçe aralığı
+- ✅ Karta tıklandığında detay sayfası açılır
+- ✅ "Acil İlgi Gerektiren" etaplar üstte gösterilir
+
+**Story Points:** 8
+**Priority:** HIGH
+**Sprint:** 4
+
+---
+
+#### US-009: Gerçek Zamanlı Başvuru İstatistikleri
+
+**As a** Merkez Program Koordinatörü (Zeynep)
+**I want** başvuruları gerçek zamanlı izlemek
+**So that** talep yoğunluğuna göre aksiyon alabileyim
+
+**Acceptance Criteria:**
+- ✅ Grafikler: Günlük başvuru sayısı, İl bazlı dağılım, Sektör bazlı dağılım
+- ✅ Bütçe kullanım oranı progress bar ile gösterilir
+- ✅ Kritik eşikler aşıldığında otomatik uyarı gelir (%80, %90, %100)
+- ✅ Veri 5 dakikada bir otomatik yenilenir
+- ✅ Excel/PDF olarak dışa aktarılabilir
+- ✅ Tarih aralığı seçilebilir
+
+**Story Points:** 13
+**Priority:** HIGH
+**Sprint:** 5
+
+---
+
+#### US-010: Etap Performans Raporu
+
+**As a** Genel Müdür Yardımcısı (Kemal)
+**I want** etap sonunda otomatik performans raporu almak
+**So that** karar süreçlerinde veri odaklı hareket edebiliyim
+
+**Acceptance Criteria:**
+- ✅ Rapor içeriği: Toplam başvuru, Onaylanan, Reddedilen, Ortalama işlem süresi, Bütçe kullanım oranı
+- ✅ Hedef vs Gerçekleşen karşılaştırması
+- ✅ İl bazlı performans tablosu
+- ✅ Başarı ve iyileştirme alanları özetlenir
+- ✅ PDF formatında indirilebilir
+- ✅ E-posta ile otomatik gönderilir
+
+**Story Points:** 8
+**Priority:** MEDIUM
+**Sprint:** 6
+
+---
+
+## 🖼️ Wireframes & Screen Flows
+
+### Screen Flow: Etap Oluşturma Akışı
+
+```mermaid
+graph TD
+    A[Etap Yönetimi Ana Sayfa] --> B{Etap Nasıl Oluşturulacak?}
+    B -->|Sıfırdan| C[10 Adımlı Sihirbaz Başlat]
+    B -->|Şablondan| D[Şablon Seç]
+    D --> E[Şablon Önizleme]
+    E --> F[Şablonu Özelleştir]
+    F --> C
+
+    C --> C1[Adım 1: Genel Bilgiler]
+    C1 --> C2[Adım 2: Bütçe Tanımlama]
+    C2 --> C3[Adım 3: Hedef Kitle]
+    C3 --> C4[Adım 4: Form Tasarımı]
+    C4 --> C5[Adım 5: Döküman Listesi]
+    C5 --> C6[Adım 6: Değerlendirme Kriterleri]
+    C6 --> C7[Adım 7: İl Limitleri]
+    C7 --> C8[Adım 8: Bildirimler]
+    C8 --> C9[Adım 9: İş Akışı]
+    C9 --> C10[Adım 10: Önizleme]
+
+    C10 --> G{Onay?}
+    G -->|Taslak Kaydet| H[Taslak Olarak Sakla]
+    G -->|Onaya Gönder| I[Onay Süreci Başlat]
+    I --> J[GMY Onayı]
+    J -->|Onaylandı| K[Etap Aktif]
+    J -->|Reddedildi| L[Düzenlemeye Geri Dön]
+    L --> C1
+
+    K --> M[Vatandaşa Açıldı]
+```
+
+---
+
+### Wireframe 1: Etap Yönetimi Ana Sayfa
+
+```
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  🏛️  KKYDP Hibe Destek Sistemi                    Merhaba, Zeynep  [👤] [🔔] ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║  📊 Dashboard  |  📋 Etap Yönetimi  |  👥 Kullanıcılar  |  📈 Raporlar      ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║                                                                              ║
+║  📋 ETAP YÖNETİMİ                                                            ║
+║  ────────────────────────────────────────────────────────────────────────── ║
+║                                                                              ║
+║  [🔍 Ara...]        [🏷️ Durum: Tümü ▾]  [📅 2025 ▾]   [➕ Yeni Etap Oluştur]║
+║                                                                              ║
+║  ┌─────────────────────────────────────────────────────────────────────┐   ║
+║  │ 📂 Aktif Etaplar (3)                                                 │   ║
+║  ├─────────────────────────────────────────────────────────────────────┤   ║
+║  │ ┌────────────────────────────┬────────────────────────────────────┐ │   ║
+║  │ │ 🌱 2025 Seracılık Desteği  │ 🟢 Aktif                           │ │   ║
+║  │ │ Başvuru: 1.245 / 2.000     │ Bütçe: 45.2M / 60M ₺ [████░░] 75% │ │   ║
+║  │ │ Kalan: 23 gün              │ [📊 Detay] [✏️ Düzenle] [⏸️ Askıya Al] │ │   ║
+║  │ └────────────────────────────┴────────────────────────────────────┘ │   ║
+║  │                                                                       │   ║
+║  │ ┌────────────────────────────┬────────────────────────────────────┐ │   ║
+║  │ │ 🐄 2025 Büyükbaş Hayvancılık│🟡 Dikkat - Bütçe %90 Doldu        │ │   ║
+║  │ │ Başvuru: 3.421 / 4.000     │ Bütçe: 108M / 120M ₺ [█████████░] 90%│ │   ║
+║  │ │ Kalan: 45 gün              │ [📊 Detay] [✏️ Düzenle] [💰 Bütçe +] │ │   ║
+║  │ └────────────────────────────┴────────────────────────────────────┘ │   ║
+║  │                                                                       │   ║
+║  │ ┌────────────────────────────┬────────────────────────────────────┐ │   ║
+║  │ │ 🍯 Arıcılık Modernizasyonu  │🔴 Risk - Son 3 Gün                 │ │   ║
+║  │ │ Başvuru: 456 / 500         │ Bütçe: 8.2M / 10M ₺ [████████░░] 82%│ │   ║
+║  │ │ Kalan: 3 gün ⏰            │ [📊 Detay] [✏️ Düzenle] [⏰ Süre +]  │ │   ║
+║  │ └────────────────────────────┴────────────────────────────────────┘ │   ║
+║  └─────────────────────────────────────────────────────────────────────┘   ║
+║                                                                              ║
+║  ┌─────────────────────────────────────────────────────────────────────┐   ║
+║  │ 📝 Taslak Etaplar (2)                                                │   ║
+║  ├─────────────────────────────────────────────────────────────────────┤   ║
+║  │ • 2025 Organik Tarım Desteği (Son düzenleme: 3 gün önce)     [✏️ Devam Et]│   ║
+║  │ • Su Ürünleri Yetiştirme (Son düzenleme: 1 hafta önce)      [✏️ Devam Et]│   ║
+║  └─────────────────────────────────────────────────────────────────────┘   ║
+║                                                                              ║
+║  ┌─────────────────────────────────────────────────────────────────────┐   ║
+║  │ ✅ Tamamlanmış Etaplar (15)                              [📁 Arşivi Gör] │   ║
+║  └─────────────────────────────────────────────────────────────────────┘   ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+```
+
+---
+
+### Wireframe 2: Sihirbaz Adım 1 - Genel Bilgiler
+
+```
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  YENİ ETAP OLUŞTUR                                                  [✕ Kapat]║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║                                                                              ║
+║  Adım 1/10: Genel Bilgiler                                                  ║
+║  [████░░░░░░░░░░░░░░░░░░░░░░░░░] 10%                                         ║
+║                                                                              ║
+║  ┌────────────────────────────────────────────────────────────────────────┐ ║
+║  │                                                                          │ ║
+║  │  Etap Adı *                                                              │ ║
+║  │  ┌──────────────────────────────────────────────────────────────────┐   │ ║
+║  │  │ 2025 Seracılık Modernizasyon Desteği                             │   │ ║
+║  │  └──────────────────────────────────────────────────────────────────┘   │ ║
+║  │  💡 Örnekler: "2025 Organik Tarım Desteği", "Hayvancılık Kapasit..."   │ ║
+║  │                                                                          │ ║
+║  │  Kısa Açıklama *                                                         │ ║
+║  │  ┌──────────────────────────────────────────────────────────────────┐   │ ║
+║  │  │ Seracılık sektöründe modern teknolojilere geçiş için yatırım    │   │ ║
+║  │  │ destekleri sağlanacaktır.                                        │   │ ║
+║  │  │                                                                  │   │ ║
+║  │  └──────────────────────────────────────────────────────────────────┘   │ ║
+║  │  (152 / 500 karakter)                                                    │ ║
+║  │                                                                          │ ║
+║  │  Başvuru Dönemi *                                                        │ ║
+║  │  Başlangıç: [📅 01.03.2025]    Bitiş: [📅 30.06.2025]                   │ ║
+║  │                                                                          │ ║
+║  │  Sektör *                                                                │ ║
+║  │  ☑ Seracılık    ☐ Hayvancılık    ☐ Arıcılık    ☐ Su Ürünleri           │ ║
+║  │  ☐ Organik Tarım    ☐ Diğer                                             │ ║
+║  │                                                                          │ ║
+║  │  Öncelik Düzeyi *                                                        │ ║
+║  │  ⚪ Normal    🔵 Orta    ⚪ Yüksek    ⚪ Kritik                           │ ║
+║  │                                                                          │ ║
+║  │  Etap Kodu (Otomatik Üretildi)                                          │ ║
+║  │  KKYDP-2025-SER-001                                                      │ ║
+║  │                                                                          │ ║
+║  └────────────────────────────────────────────────────────────────────────┘ ║
+║                                                                              ║
+║                                                                              ║
+║  [💾 Taslak Kaydet]            [⬅️ Vazgeç]              [İleri: Bütçe ➡️]  ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+```
+
+---
+
+### Wireframe 3: Sihirbaz Adım 4 - Form Tasarımı (Drag-Drop)
+
+```
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  YENİ ETAP OLUŞTUR - Form Tasarımı                              [✕ Kapat]    ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║                                                                              ║
+║  Adım 4/10: Başvuru Formu Tasarlama                                         ║
+║  [████████████░░░░░░░░░░░░░░] 40%                                            ║
+║                                                                              ║
+║ ┌────────────────┬───────────────────────────────────┬──────────────────┐   ║
+║ │ ALAN TİPLERİ   │ FORM ÖNİZLEME                     │ ALAN ÖZELLİKLERİ │   ║
+║ ├────────────────┼───────────────────────────────────┼──────────────────┤   ║
+║ │                │                                   │                  │   ║
+║ │ Sürükle ↓      │ 📄 Başvuru Formu                 │ Seçili Alan:     │   ║
+║ │                │ ─────────────────────────────────│                  │   ║
+║ │ [📝] Metin     │                                   │ 📝 Proje Adı     │   ║
+║ │ [🔢] Sayı      │ Bölüm 1: Temel Bilgiler          │                  │   ║
+║ │ [📅] Tarih     │ ┌───────────────────────────────┐│ Etiket:          │   ║
+║ │ [📎] Dosya     │ │ Proje Adı *                   ││ ┌──────────────┐ │   ║
+║ │ [📋] Dropdown  │ │ [________________]            ││ │ Proje Adı   │ │   ║
+║ │ [☑️] Checkbox  │ └───────────────────────────────┘│ └──────────────┘ │   ║
+║ │ [🔘] Radio     │ ┌───────────────────────────────┐│                  │   ║
+║ │ [📊] Tablo     │ │ Yatırım Tutarı (₺) *          ││ Zorunlu:         │   ║
+║ │ [⚡] Koşullu   │ │ [________________]            ││ ☑ Evet           │   ║
+║ │                │ └───────────────────────────────┘│                  │   ║
+║ │ [🔍] Önizle    │                                   │ Placeholder:     │   ║
+║ │ [💾] Kaydet    │ Bölüm 2: Teknik Detaylar         │ ┌──────────────┐ │   ║
+║ │                │ [➕ Yeni Bölüm Ekle]             │ │ örn: Sera..  │ │   ║
+║ │                │                                   │ └──────────────┘ │   ║
+║ │ 📚 Şablonlar:  │ [🗑️ Alan Sil] [⬆️ Yukarı] [⬇️ Aşağı]│                  │   ║
+║ │ • Seracılık    │                                   │ Validasyon:      │   ║
+║ │ • Hayvancılık  │                                   │ Min: [10] Max: [200]│   ║
+║ │ • Arıcılık     │                                   │                  │   ║
+║ │                │                                   │ Yardım Metni:    │   ║
+║ │                │                                   │ ┌──────────────┐ │   ║
+║ │                │                                   │ │ Projenize... │ │   ║
+║ │                │                                   │ └──────────────┘ │   ║
+║ └────────────────┴───────────────────────────────────┴──────────────────┘   ║
+║                                                                              ║
+║  [💾 Taslak Kaydet]     [⬅️ Geri: Hedef Kitle]    [İleri: Dökümanlar ➡️]   ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+```
+
+---
+
+
+### Wireframe 4: Sihirbaz Adım 6 - Değerlendirme Kriterleri
+
+```
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  YENİ ETAP OLUŞTUR - Değerlendirme Kriterleri                  [✕ Kapat]    ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║                                                                              ║
+║  Adım 6/10: Değerlendirme Kriterleri Tanımlama                              ║
+║  [████████████████████░░░░░░] 60%                                            ║
+║                                                                              ║
+║  ┌────────────────────────────────────────────────────────────────────────┐ ║
+║  │ 📊 KRİTER LİSTESİ                            Toplam Ağırlık: %100 ✅   │ ║
+║  ├────────────────────────────────────────────────────────────────────────┤ ║
+║  │                                                                          │ ║
+║  │ ┌──────────────────────────────────────────────────────────────────┐   │ ║
+║  │ │ 1️⃣ Proje Fizibilitesi                           %40  [✏️] [🗑️] [⬆️⬇️]│   │ ║
+║  │ │    Max Puan: 100                                                  │   │ ║
+║  │ │    ├─ Pazar Analizi                            %15 (15 puan)      │   │ ║
+║  │ │    ├─ Maliyet-Fayda Analizi                    %15 (15 puan)      │   │ ║
+║  │ │    └─ Teknik Fizibilite                        %10 (10 puan)      │   │ ║
+║  │ └──────────────────────────────────────────────────────────────────┘   │ ║
+║  │                                                                          │ ║
+║  │ ┌──────────────────────────────────────────────────────────────────┐   │ ║
+║  │ │ 2️⃣ Başvuran Yetkinliği                          %25  [✏️] [🗑️] [⬆️⬇️]│   │ ║
+║  │ │    Max Puan: 100                                                  │   │ ║
+║  │ │    ├─ Deneyim (Yıl × 2 puan) [🤖 Otomatik]     %10 (10 puan)      │   │ ║
+║  │ │    ├─ Eğitim Durumu                            %10 (10 puan)      │   │ ║
+║  │ │    └─ Geçmiş Proje Başarısı                    %5  (5 puan)       │   │ ║
+║  │ └──────────────────────────────────────────────────────────────────┘   │ ║
+║  │                                                                          │ ║
+║  │ ┌──────────────────────────────────────────────────────────────────┐   │ ║
+║  │ │ 3️⃣ Yatırım Kalitesi                             %20  [✏️] [🗑️] [⬆️⬇️]│   │ ║
+║  │ │    Max Puan: 100                                                  │   │ ║
+║  │ └──────────────────────────────────────────────────────────────────┘   │ ║
+║  │                                                                          │ ║
+║  │ ┌──────────────────────────────────────────────────────────────────┐   │ ║
+║  │ │ 4️⃣ Sosyal Etki                                  %15  [✏️] [🗑️] [⬆️⬇️]│   │ ║
+║  │ │    Max Puan: 100                                                  │   │ ║
+║  │ │    ├─ İstihdam Yaratma (Kişi × 5 puan) [🤖]    %10 (10 puan)      │   │ ║
+║  │ │    └─ Bölgesel Kalkınma Etkisi                 %5  (5 puan)       │   │ ║
+║  │ └──────────────────────────────────────────────────────────────────┘   │ ║
+║  │                                                                          │ ║
+║  │ [➕ Yeni Kriter Ekle]  [📋 Şablondan Yükle]  [💾 Şablon Kaydet]         │ ║
+║  └────────────────────────────────────────────────────────────────────────┘ ║
+║                                                                              ║
+║  ┌────────────────────────────────────────────────────────────────────────┐ ║
+║  │ ⚙️ PUANLAMA AYARLARI                                                    │ ║
+║  ├────────────────────────────────────────────────────────────────────────┤ ║
+║  │  Minimum Geçme Puanı: [70] / 100                                        │ ║
+║  │  Otomatik Puanlama: ☑ Aktif                                             │ ║
+║  │  Manuel Müdahale:   ☑ İzin Ver                                          │ ║
+║  └────────────────────────────────────────────────────────────────────────┘ ║
+║                                                                              ║
+║  [💾 Taslak Kaydet]     [⬅️ Geri: Dökümanlar]    [İleri: İl Limitleri ➡️]  ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+```
+
+---
+
+### Wireframe 5: Sihirbaz Adım 7 - İl Bazlı Bütçe Tahsisi
+
+```
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  YENİ ETAP OLUŞTUR - İl Limitleri                              [✕ Kapat]    ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║                                                                              ║
+║  Adım 7/10: İl Bazlı Bütçe ve Limit Tanımlama                               ║
+║  [█████████████████████████░░] 70%                                           ║
+║                                                                              ║
+║ ┌─────────────────────────────────┬──────────────────────────────────────┐  ║
+║ │ 🗺️ TÜRKİYE HARİTASI              │ 📊 BÜTÇE DAĞILIMI                    │  ║
+║ ├─────────────────────────────────┼──────────────────────────────────────┤  ║
+║ │                                 │                                      │  ║
+║ │   [Türkiye haritası interaktif] │ Toplam Bütçe: 500.000.000 ₺          │  ║
+║ │                                 │ Dağıtılan:    485.000.000 ₺ (97%)    │  ║
+║ │   Renk kodları:                 │ Kalan:         15.000.000 ₺          │  ║
+║ │   🟢 Bütçe %100 tahsis          │                                      │  ║
+║ │   🟡 Bütçe %50-99 tahsis        │ Dağıtım Yöntemi:                     │  ║
+║ │   🔴 Bütçe henüz tahsis edilmedi│ 🔘 Eşit Dağılım                      │  ║
+║ │                                 │ 🔘 Nüfus Bazlı                       │  ║
+║ │   Seçili: İZMİR                 │ 🔘 Tarım Alanı Bazlı                 │  ║
+║ │                                 │ 🔵 Özel Formül (Seçili)              │  ║
+║ │                                 │                                      │  ║
+║ └─────────────────────────────────┴──────────────────────────────────────┘  ║
+║                                                                              ║
+║  ┌────────────────────────────────────────────────────────────────────────┐ ║
+║  │ 📋 İL DETAY LİSTESİ                    [🔍 Ara...] [📥 Excel Aktar]    │ ║
+║  ├────────┬───────────────┬───────────────┬──────────────┬──────────────┤ ║
+║  │ İL     │ BÜTÇE (₺)     │ MAX BAŞVURU   │ MAX KİŞİ BAŞ.│ DURUM        │ ║
+║  ├────────┼───────────────┼───────────────┼──────────────┼──────────────┤ ║
+║  │ İstanbul│ 45.000.000   │ 500           │ 150.000 ₺    │ 🟢 Tamam     │ ║
+║  │ Ankara │ 30.000.000   │ 350           │ 150.000 ₺    │ 🟢 Tamam     │ ║
+║  │ İzmir  │ 25.000.000   │ 300           │ 150.000 ₺    │ 🟢 Tamam     │ ║
+║  │ Antalya│ 20.000.000   │ 250           │ 150.000 ₺    │ 🟢 Tamam     │ ║
+║  │ ...    │ ...          │ ...           │ ...          │ ...          │ ║
+║  │ Artvin │  2.500.000   │  30           │ 150.000 ₺    │ 🟡 Düşük     │ ║
+║  ├────────┴───────────────┴───────────────┴──────────────┴──────────────┤ ║
+║  │ [✏️ Toplu Düzenle]  [🔄 Formülü Uygula]  [💾 Kaydet]                   │ ║
+║  └────────────────────────────────────────────────────────────────────────┘ ║
+║                                                                              ║
+║  [💾 Taslak Kaydet]     [⬅️ Geri: Kriterler]    [İleri: Bildirimler ➡️]    ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+```
+
+---
+
+### Wireframe 6: Adım 10 - Önizleme ve Yayınlama
+
+```
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  YENİ ETAP OLUŞTUR - Önizleme ve Yayınlama                     [✕ Kapat]    ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║                                                                              ║
+║  Adım 10/10: Önizleme ve Yayınlama                                          ║
+║  [████████████████████████████████████] 100%                                 ║
+║                                                                              ║
+║  ┌────────────────────────────────────────────────────────────────────────┐ ║
+║  │ ✅ ETAP HAZIRLAMA TAMAMLANDI!                                           │ ║
+║  ├────────────────────────────────────────────────────────────────────────┤ ║
+║  │                                                                          │ ║
+║  │ Etap Özeti:                                                              │ ║
+║  │ • Ad: 2025 Seracılık Modernizasyon Desteği                              │ ║
+║  │ • Dönem: 01.03.2025 - 30.06.2025 (122 gün)                              │ ║
+║  │ • Toplam Bütçe: 500.000.000 ₺                                           │ ║
+║  │ • Hedef Başvuru: 5.000 adet                                             │ ║
+║  │ • Form Alanı: 24 alan, 5 bölüm                                          │ ║
+║  │ • Döküman: 8 zorunlu, 3 opsiyonel                                       │ ║
+║  │ • Kriter: 4 ana kriter, %100 ağırlık                                    │ ║
+║  │ • İl Sayısı: 81 il, tümü bütçelenmiş                                    │ ║
+║  │                                                                          │ ║
+║  └────────────────────────────────────────────────────────────────────────┘ ║
+║                                                                              ║
+║  ┌────────────────────────────────────────────────────────────────────────┐ ║
+║  │ 🔍 ÖNİZLEME SEÇENEKLERİ                                                 │ ║
+║  ├────────────────────────────────────────────────────────────────────────┤ ║
+║  │  [👤 Vatandaş Görünümü]  [👔 İl Personeli Görünümü]  [📊 Rapor Görünümü]│ ║
+║  │                                                                          │ ║
+║  │  Preview Modu: Vatandaş Görünümü                                        │ ║
+║  │  ┌──────────────────────────────────────────────────────────────────┐  │ ║
+║  │  │ [Vatandaş başvuru ekranının önizlemesi gösterilir]               │  │ ║
+║  │  │                                                                  │  │ ║
+║  │  │ 🌱 2025 Seracılık Modernizasyon Desteği                          │  │ ║
+║  │  │                                                                  │  │ ║
+║  │  │ Seracılık sektöründe modern teknolojilere geçiş için...         │  │ ║
+║  │  │                                                                  │  │ ║
+║  │  │ Başvuru Dönemi: 01.03.2025 - 30.06.2025                          │  │ ║
+║  │  │ Maksimum Destek: 150.000 ₺                                       │  │ ║
+║  │  │                                                                  │  │ ║
+║  │  │ [▶️ Başvuruya Başla]                                             │  │ ║
+║  │  └──────────────────────────────────────────────────────────────────┘  │ ║
+║  └────────────────────────────────────────────────────────────────────────┘ ║
+║                                                                              ║
+║  ┌────────────────────────────────────────────────────────────────────────┐ ║
+║  │ ⚠️ YAYINLAMA SEÇENEKLERİ                                                │ ║
+║  ├────────────────────────────────────────────────────────────────────────┤ ║
+║  │  🔵 Taslak Olarak Kaydet (Daha sonra yayınla)                           │ ║
+║  │  🔘 Test Modunda Yayınla (Sadece test kullanıcıları görebilir)         │ ║
+║  │  🔘 Onaya Gönder (GMY onayından sonra yayınla)                          │ ║
+║  │  🔘 Hemen Yayınla (Tüm vatandaşlara açık)                               │ ║
+║  │                                                                          │ ║
+║  │  Bildirim Ayarları:                                                      │ ║
+║  │  ☑ İl müdürlüklerine e-posta gönder                                     │ ║
+║  │  ☑ Sisteme giriş yapanlara banner göster                                │ ║
+║  │  ☑ SMS ile bilgilendirme yap (50.000 kişiye)                            │ ║
+║  └────────────────────────────────────────────────────────────────────────┘ ║
+║                                                                              ║
+║  [💾 Taslak Kaydet]     [⬅️ Geri: İş Akışı]    [🚀 Onaya Gönder]           ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+```
+
+---
+
+## 🔄 İş Akışları (Workflows)
+
+### Workflow 1: Etap Durum Geçiş İş Akışı
+
+```mermaid
+stateDiagram-v2
+    [*] --> Taslak: Yeni Etap Oluştur
+
+    Taslak --> OnayBekliyor: Onaya Gönder
+    Taslak --> Taslak: Düzenle ve Kaydet
+    Taslak --> [*]: Sil
+
+    OnayBekliyor --> Aktif: GMY Onayla
+    OnayBekliyor --> Reddedildi: GMY Reddet
+
+    Reddedildi --> Taslak: Düzenle
+    Reddedildi --> [*]: Vazgeç
+
+    Aktif --> Askida: Askıya Al (GMY)
+    Aktif --> Kapali: Etap Süresİ Bitti
+    Aktif --> Kapali: Manuel Kapat (GMY)
+
+    Askida --> Aktif: Yeniden Aç (GMY)
+    Askida --> Kapali: 90 Gün Geçti (Otomatik)
+    Askida --> Kapali: Manuel Kapat (GMY)
+
+    Kapali --> [*]: Arşivle
+
+    note right of Taslak
+        Sadece oluşturan görür
+        Düzenlenebilir
+    end note
+
+    note right of OnayBekliyor
+        GMY bildirimi gider
+        48 saat içinde karar
+    end note
+
+    note right of Aktif
+        Vatandaşlara açık
+        Başvurular alınır
+    end note
+
+    note right of Askida
+        Geçici durdurma
+        Max 90 gün
+    end note
+
+    note right of Kapali
+        Sadece okunabilir
+        Yeni versiyon oluşturulabilir
+    end note
+```
+
+---
+
+
+### Workflow 2: Form Tasarımı ve Validasyon İş Akışı
+
+```mermaid
+graph TB
+    Start[Form Tasarımı Başlat] --> SelectTemplate{Şablon Kullan?}
+
+    SelectTemplate -->|Evet| LoadTemplate[Şablon Yükle]
+    SelectTemplate -->|Hayır| EmptyCanvas[Boş Form]
+
+    LoadTemplate --> AddSection[Bölüm Ekle/Düzenle]
+    EmptyCanvas --> AddSection
+
+    AddSection --> AddField[Alan Ekle]
+    AddField --> FieldType{Alan Tipi Seç}
+
+    FieldType -->|Metin| ConfigText[Metin Özellikleri]
+    FieldType -->|Sayı| ConfigNumber[Sayı Özellikleri]
+    FieldType -->|Tarih| ConfigDate[Tarih Özellikleri]
+    FieldType -->|Dosya| ConfigFile[Dosya Özellikleri]
+    FieldType -->|Dropdown| ConfigDropdown[Dropdown Özellikleri]
+    FieldType -->|Koşullu| ConfigConditional[Koşullu Alan Tanımla]
+
+    ConfigText --> SetValidation[Validasyon Kuralları]
+    ConfigNumber --> SetValidation
+    ConfigDate --> SetValidation
+    ConfigFile --> SetValidation
+    ConfigDropdown --> SetValidation
+
+    ConfigConditional --> CheckCycle{Döngüsel<br/>Bağımlılık?}
+    CheckCycle -->|Evet| ErrorCycle[HATA: Döngü Tespit Edildi]
+    CheckCycle -->|Hayır| SetValidation
+
+    ErrorCycle --> ConfigConditional
+
+    SetValidation --> PreviewField[Alan Önizleme]
+    PreviewField --> MoreFields{Daha Fazla<br/>Alan Ekle?}
+
+    MoreFields -->|Evet| AddField
+    MoreFields -->|Hayır| ValidateForm[Form Validasyonu]
+
+    ValidateForm --> CheckRequired{Zorunlu Alanlar<br/>Tanımlı mı?}
+    CheckRequired -->|Hayır| WarnRequired[UYARI: Zorunlu Alan Yok]
+    CheckRequired -->|Evet| CheckSections
+
+    WarnRequired --> CheckSections{En Az 1 Bölüm<br/>Var mı?}
+    CheckSections -->|Hayır| ErrorSection[HATA: Bölüm Gerekli]
+    CheckSections -->|Evet| GenerateJSON[JSON Şema Üret]
+
+    ErrorSection --> AddSection
+
+    GenerateJSON --> FullPreview[Tam Form Önizleme]
+    FullPreview --> TestForm[Test Et]
+
+    TestForm --> Satisfied{Onaylıyor<br/>musunuz?}
+    Satisfied -->|Hayır| AddSection
+    Satisfied -->|Evet| SaveForm[Form Kaydet]
+
+    SaveForm --> End[Sonraki Adıma Geç]
+```
+
+---
+
+### Workflow 3: Bütçe Dağıtım ve Onay İş Akışı
+
+```mermaid
+graph LR
+    A[Toplam Bütçe Gir] --> B{Dağıtım Yöntemi Seç}
+
+    B -->|Eşit Dağılım| C[81 İle Eşit Böl]
+    B -->|Nüfus Bazlı| D[Nüfus Verisi Çek]
+    B -->|Tarım Alanı| E[Tarım Alanı Verisi Çek]
+    B -->|Özel Formül| F[Ağırlıkları Gir]
+
+    C --> G[Bütçe Hesapla]
+    D --> G
+    E --> G
+    F --> H{Ağırlık Toplamı<br/>%100 mü?}
+
+    H -->|Hayır| I[HATA: %100 Olmalı]
+    H -->|Evet| G
+    I --> F
+
+    G --> J{Tüm İller<br/>Bütçe Aldı mı?}
+    J -->|Hayır| K[Kalan İllere Min. Bütçe]
+    J -->|Evet| L[Toplam Kontrol]
+    K --> L
+
+    L --> M{Toplam = %100<br/>±%1 Tolerans?}
+    M -->|Hayır| N[Otomatik Normalize]
+    M -->|Evet| O[İl Detay Listesi Göster]
+    N --> O
+
+    O --> P[Harita Görselleştir]
+    P --> Q{Manuel<br/>Düzenleme?}
+
+    Q -->|Evet| R[İl Seç ve Düzenle]
+    R --> S[Değişiklikleri Uygula]
+    S --> L
+
+    Q -->|Hayır| T[Excel'e Aktar]
+    T --> U{Onaylıyor<br/>musunuz?}
+
+    U -->|Hayır| O
+    U -->|Evet| V[Bütçe Dağılımını Kaydet]
+
+    V --> W[Sonraki Adıma Geç]
+```
+
+---
+
+### Workflow 4: Kriter Ağırlıklandırma İş Akışı
+
+```mermaid
+graph TB
+    Start[Kriter Tanımlama Başlat] --> Template{Şablondan<br/>Yükle?}
+
+    Template -->|Evet| LoadCriteria[Kriter Şablonu Seç]
+    Template -->|Hayır| NewCriteria[Yeni Kriter Ekle]
+
+    LoadCriteria --> ShowCriteria[Kriter Listesi Göster]
+    NewCriteria --> ShowCriteria
+
+    ShowCriteria --> Action{İşlem Seç}
+
+    Action -->|Yeni Kriter| AddNew[Kriter Adı ve Ağırlık Gir]
+    Action -->|Düzenle| EditExist[Mevcut Kriteri Düzenle]
+    Action -->|Sil| DeleteCrit[Kriteri Sil]
+    Action -->|Alt Kriter Ekle| AddSub[Alt Kriter Tanımla]
+    Action -->|Otomatik Puanlama| AutoScore[Formül Tanımla]
+
+    AddNew --> ValidateWeight{Ağırlık %5-%50<br/>Arasında mı?}
+    ValidateWeight -->|Hayır| WarnWeight[UYARI: Önerilen Aralık Dışı]
+    ValidateWeight -->|Evet| CheckTotal
+    WarnWeight --> CheckTotal
+
+    EditExist --> CheckTotal[Toplam Ağırlık Hesapla]
+    DeleteCrit --> CheckTotal
+
+    AddSub --> SubWeight[Alt Kriter Ağırlığı]
+    SubWeight --> ValidateSubTotal{Alt Kriterler<br/>Üst Kritere Eşit?}
+
+    ValidateSubTotal -->|Hayır| ErrorSub[HATA: Toplam Eşit Değil]
+    ValidateSubTotal -->|Evet| CheckTotal
+    ErrorSub --> SubWeight
+
+    AutoScore --> FormulaType{Formül Tipi}
+    FormulaType -->|Çarpan| MultFormula[Değer × Katsayı]
+    FormulaType -->|Koşullu| CondFormula[IF-THEN Kuralı]
+    FormulaType -->|Aralık| RangeFormula[Min-Max Aralığı]
+
+    MultFormula --> TestFormula[Formülü Test Et]
+    CondFormula --> TestFormula
+    RangeFormula --> TestFormula
+    TestFormula --> CheckTotal
+
+    CheckTotal --> Display[Toplam Göster]
+    Display --> IsHundred{Toplam = %100?}
+
+    IsHundred -->|Hayır| ShowDiff[Fark Göster: +%X veya -%X]
+    IsHundred -->|Evet| Success[✅ Başarılı]
+
+    ShowDiff --> Assist{Yardım<br/>İster misiniz?}
+    Assist -->|Eşit Dağıt| AutoDistribute[Kalan Ağırlığı Böl]
+    Assist -->|Normalize| AutoNormalize[Oransal Ayarla]
+    Assist -->|Manuel| Action
+
+    AutoDistribute --> CheckTotal
+    AutoNormalize --> CheckTotal
+
+    Success --> MinScore[Minimum Geçme Puanı Belirle]
+    MinScore --> EnableAuto{Otomatik Puanlama<br/>Aktif?}
+
+    EnableAuto -->|Evet| ManualOverride[Manuel Müdahale İzni?]
+    EnableAuto -->|Hayır| SaveCriteria
+
+    ManualOverride --> SaveCriteria[Kriterleri Kaydet]
+    SaveCriteria --> End[Sonraki Adıma Geç]
+```
+
+---
+
+### Workflow 5: Etap Onay Süreci
+
+```mermaid
+sequenceDiagram
+    participant PK as Program Koordinatörü<br/>(Zeynep)
+    participant Sistem
+    participant GMY as Genel Müdür Yardımcısı<br/>(Kemal)
+    participant Email as Email Servisi
+    participant SMS as SMS Servisi
+    participant IL as İl Müdürlükleri
+
+    PK->>Sistem: Etap Oluştur (10 Adım)
+    Sistem->>Sistem: Validasyonları Kontrol Et
+    Sistem-->>PK: ✅ Validasyon Başarılı
+
+    PK->>Sistem: Önizleme Yap
+    Sistem-->>PK: Etap Önizlemesi Göster
+
+    PK->>Sistem: "Onaya Gönder" Tıkla
+    Sistem->>Sistem: Etap Durumu = "Onay Bekliyor"
+    Sistem->>Email: GMY'ye Email Gönder
+    Email-->>GMY: 📧 Yeni Etap Onay Talebi
+
+    Sistem->>Sistem: 48 Saat Timer Başlat
+
+    alt Onay Senaryosu
+        GMY->>Sistem: Etap Detayını İncele
+        GMY->>Sistem: Dashboard'dan İstatistikleri Gör
+        GMY->>Sistem: "Onayla" Butonuna Tıkla
+
+        Sistem->>Sistem: Etap Durumu = "Aktif"
+        Sistem->>Email: PK'ya Onay Maili
+        Email-->>PK: ✅ Etabınız Onaylandı
+
+        Sistem->>Email: Tüm İl Müdürlüklerine Bildirim
+        Email-->>IL: 📧 Yeni Etap Açıldı
+
+        Sistem->>SMS: Hedef Kitleye SMS
+        SMS-->>IL: 📱 Başvurular Başladı
+
+        Sistem->>Sistem: Etabı Vatandaşlara Aç
+        Sistem-->>PK: 🎉 Etap Yayında!
+
+    else Red Senaryosu
+        GMY->>Sistem: "Reddet" Butonuna Tıkla
+        GMY->>Sistem: Red Gerekçesi Yaz
+
+        Sistem->>Sistem: Etap Durumu = "Reddedildi"
+        Sistem->>Email: PK'ya Red Maili + Gerekçe
+        Email-->>PK: ❌ Etap Reddedildi
+
+        PK->>Sistem: Red Gerekçesini İncele
+        PK->>Sistem: Etabı Düzenle
+        PK->>Sistem: Tekrar Onaya Gönder
+
+    else Timeout Senaryosu
+        Sistem->>Sistem: 48 Saat Geçti
+        Sistem->>Email: GMY'ye Hatırlatma
+        Email-->>GMY: ⚠️ Bekleyen Onay
+
+        Sistem->>Sistem: +24 Saat Ek Süre
+
+        alt 24 Saat Sonra Hala Onay Yok
+            Sistem->>Sistem: Etap Durumu = "Otomatik Onaylandı"
+            Sistem->>Email: GMY ve PK'ya Bildirim
+            Email-->>GMY: ℹ️ Otomatik Onay (Timeout)
+            Email-->>PK: ✅ Etap Aktif (Timeout)
+        end
+    end
+```
+
+---
+
+## 📐 Business Rules
+
+### BR-001: Etap Adlandırma Standardı
+```
+Format: [YIL] [SEKTÖR] [TİP] [VERSİYON]
+Örnek: 2025 Seracılık Modernizasyon v1.0
+
+Kurallar:
+- Yıl: 4 haneli (2025, 2026...)
+- Sektör: Seracılık, Hayvancılık, Arıcılık vb.
+- Tip: Yatırım, Modernizasyon, Kapasite Artırımı vb.
+- Versiyon: Aynı etap güncellenirse v1.1, v1.2...
+```
+
+### BR-002: Bütçe Tahsis Formülü
+```
+Eşit Dağılım:
+İl_Bütçe = Toplam_Bütçe / 81
+
+Nüfus Bazlı:
+İl_Bütçe = (İl_Nüfusu / Türkiye_Nüfusu) × Toplam_Bütçe
+
+Tarım Alanı Bazlı:
+İl_Bütçe = (İl_Tarım_Alanı / Toplam_Tarım_Alanı) × Toplam_Bütçe
+
+Özel Formül:
+İl_Bütçe = (Nüfus_Ağırlık × Nüfus_Bütçe) +
+           (Alan_Ağırlık × Alan_Bütçe) +
+           (Öncelik_Ağırlık × Öncelik_Bütçe)
+
+Kısıt: Nüfus_Ağırlık + Alan_Ağırlık + Öncelik_Ağırlık = 100%
+```
+
+### BR-003: Kriter Ağırlık Validasyonu
+```
+Kurallar:
+1. Toplam ağırlık tam %100 olmalı
+2. Her kriter min %5, max %50 ağırlığa sahip olabilir
+3. Alt kriterler toplamı üst kritere eşit olmalı
+4. En az 3, en fazla 10 ana kriter tanımlanabilir
+
+Validasyon:
+IF (SUM(Kriter_Ağırlık) ≠ 100) THEN
+  ERROR: "Toplam ağırlık %100 olmalıdır"
+
+IF (ANY(Kriter_Ağırlık) < 5 OR ANY(Kriter_Ağırlık) > 50) THEN
+  WARNING: "Kriter ağırlıkları %5-%50 arasında önerilir"
+```
+
+### BR-004: Etap Durum Geçiş Kuralları
+```
+İzin Verilen Geçişler:
+Taslak → Onay Bekliyor → Aktif → Askıda → Kapalı
+                    ↓                ↓
+                Reddedildi      Kapalı
+
+Kısıtlar:
+- Taslaktan direkt Aktif'e geçilemez (onay zorunlu)
+- Aktif etap Taslak'a geri dönemez
+- Kapalı etap tekrar açılamaz (yeni versiyon oluşturulmalı)
+- Askıya alma max 90 gün (otomatik kapatma)
+
+Onay Yetkileri:
+- Taslak → Onay Bekliyor: Program Koordinatörü
+- Onay Bekliyor → Aktif: Genel Müdür Yardımcısı
+- Aktif → Askıda: Genel Müdür Yardımcısı
+- Askıda → Aktif: Genel Müdür Yardımcısı
+- * → Kapalı: Genel Müdür Yardımcısı
+```
+
+### BR-005: Form Alanı Validasyon Kuralları
+```
+Metin Alanı:
+- minLength: 0-1000
+- maxLength: 1-5000
+- pattern: regex (opsiyonel)
+
+Sayı Alanı:
+- min: herhangi bir sayı
+- max: herhangi bir sayı
+- decimal: 0-4 basamak
+
+Tarih Alanı:
+- minDate: belirli bir tarih veya "today"
+- maxDate: belirli bir tarih veya "today+365days"
+
+Dosya Alanı:
+- allowedTypes: ["pdf", "jpg", "png", "docx"]
+- maxSize: 1-50 MB
+- maxFiles: 1-10
+
+Koşullu Alan:
+- parentField: hangi alana bağlı
+- condition: equals, notEquals, greaterThan, lessThan, contains
+- value: koşul değeri
+```
+
+---
+
+## 🔧 Edge Cases
+
+### EC-001: Etap Oluşturma Sırasında İnternet Kesilmesi
+**Senaryo:** Kullanıcı etap oluştururken (örneğin Adım 6'da) internet bağlantısı kopuyor.
+
+**Sorun:** Yarım kalan işlem kaybolur, kullanıcı baştan başlamak zorunda kalır.
+
+**Çözüm:**
+- Her adımda otomatik taslak kaydetme (auto-save) aktif olmalı
+- Browser Local Storage'da geçici kayıt tutulmalı
+- İnternet geri geldiğinde "Kaldığınız yerden devam edin" teklifi sunulmalı
+- Maksimum 7 gün boyunca taslak saklanmalı
+
+---
+
+### EC-002: Toplam Bütçe Tüm İllere Dağıtılamıyor
+**Senaryo:** Özel formül ile bütçe dağılımı yapılırken, bazı iller 0₺ bütçe alıyor veya toplam bütçe aşılıyor.
+
+**Sorun:** Bütçe adaletsiz dağılıyor veya matematiksel hata oluşuyor.
+
+**Çözüm:**
+- Minimum il bütçesi garantisi: Her il en az (Toplam_Bütçe / 81) × 0.5 almalı
+- Toplam kontrolü: Dağıtılan bütçe %100 ±%1 toleransta olmalı
+- Aşım durumunda uyarı ver ve otomatik normalize et
+- "Kalan bütçeyi eşit dağıt" seçeneği sunulmalı
+
+---
+
+### EC-003: Aynı İsimde Etap Zaten Var
+**Senaryo:** Kullanıcı "2025 Seracılık Desteği" adında etap oluşturmaya çalışıyor, ancak bu isimde aktif bir etap var.
+
+**Sorun:** İsim çakışması, karışıklık yaratır.
+
+**Çözüm:**
+- Aynı isim kontrolü yapılmalı
+- Öneriler sunulmalı: "2025 Seracılık Desteği v2.0" veya "2025 Seracılık Desteği (Ek)"
+- Kullanıcıya mevcut etabı kopyalama seçeneği sunulmalı
+- Etap kodu her zaman unique olmalı (KKYDP-2025-SER-002)
+
+---
+
+### EC-004: Kriterlerde %100 Ağırlık Tutturulamaması
+**Senaryo:** Kullanıcı kriterleri ekliyor, silip düzenliyor, ancak toplam %98 veya %103 oluyor.
+
+**Sorun:** Validasyon hata veriyor, kullanıcı hangi kriteri düzenleyeceğini bilmiyor.
+
+**Çözüm:**
+- Gerçek zamanlı ağırlık göstergesi (progress bar)
+- "Kalan ağırlığı eşit dağıt" butonu
+- Otomatik normalize önerisi: "Mevcut ağırlıklar oransal olarak %100'e ayarlanacak, onaylıyor musunuz?"
+- Her kriter eklendiğinde kalan ağırlık otomatik önerilmeli
+
+---
+
+### EC-005: Formda Koşullu Alanlar Döngüye Giriyor
+**Senaryo:** Alan A, Alan B'ye bağlı. Alan B, Alan C'ye bağlı. Alan C, Alan A'ya bağlı (circular dependency).
+
+**Sorun:** Sonsuz döngü, form render edilemiyor.
+
+**Çözüm:**
+- Koşullu alan eklerken döngüsel bağımlılık kontrolü yapılmalı
+- Graph algoritması ile döngü tespiti
+- Hata mesajı: "Alan X, Alan Y'ye bağlı. Döngüsel bağımlılık oluşturulamaz."
+- Maksimum bağımlılık derinliği: 3 seviye
+
+---
+
+### EC-006: Etap Aktif Haldeyken Kritik Değişiklik Yapılmak İsteniyor
+**Senaryo:** Etap aktif, 500 başvuru yapılmış. Kullanıcı değerlendirme kriterlerini değiştirmek istiyor.
+
+**Sorun:** Mevcut başvuruların puanlaması değişir, adalet sorunu.
+
+**Çözüm:**
+- Aktif etaplarda kritik değişiklikler (kriterler, form alanları) engellensin
+- Alternatif: Yeni versiyon oluşturma önerisi
+- Eğer mutlaka değişiklik gerekiyorsa:
+  - GMY onayı zorunlu
+  - Tüm başvurular yeniden puanlanmalı
+  - İl müdürlüklerine bildirim gitmeli
+  - Değişiklik logu tutulmalı
+
+---
+
+## 📊 Success Metrics
+
+### Kullanılabilirlik Metrikleri
+
+| Metrik | Hedef | Ölçüm Yöntemi |
+|--------|-------|---------------|
+| **Etap Oluşturma Süresi** | < 2 saat (ortalama) | Analytics: Sihirbaz başlangıç - bitiş timestamp |
+| **Sihirbaz Tamamlama Oranı** | > %90 | (Yayınlanan Etap / Başlatılan Etap) × 100 |
+| **Taslak Kaydetme Sıklığı** | > %80 kullanıcı en az 1 taslak kaydeder | Taslak butonuna tıklama event'i |
+| **Önizleme Kullanım Oranı** | > %95 kullanıcı önizlemeyi test eder | Önizleme butonuna tıklama event'i |
+| **Hata Oranı (Validasyon)** | < %10 kullanıcı validasyon hatası alır | Hata mesajı gösterme sayısı / Toplam kaydetme |
+
+### İş Değeri Metrikleri
+
+| Metrik | Hedef | Ölçüm Yöntemi |
+|--------|-------|---------------|
+| **IT Bağımlılık Azalması** | %90 azalma (etap başına IT ticket) | JIRA ticket sayısı - Öncesi vs Sonrası |
+| **Etap Lansuman Süresi** | 3 aydan → 1 haftaya (%87 azalma) | İlk kez etap yayınlanma süresi |
+| **Şablon Kullanım Oranı** | > %60 etap şablondan oluşturulur | Şablon kullanımı / Toplam etap |
+| **Versiyon Kontrolü Geri Alma** | < %5 etapta rollback gerekir | Rollback işlemi / Toplam etap |
+
+### Kullanıcı Memnuniyeti
+
+| Metrik | Hedef | Ölçüm Yöntemi |
+|--------|-------|---------------|
+| **System Usability Scale (SUS)** | > 80 puan | Anket (10 soruluk SUS anketi) |
+| **Net Promoter Score (NPS)** | > 50 | "Bu sistemi meslektaşlarınıza tavsiye eder misiniz?" |
+| **Kullanıcı Eğitim Süresi** | < 4 saat | Yeni kullanıcının ilk etabı yayınlamasına kadar geçen süre |
+| **Destek Talebi Sayısı** | < 5 talep/ay (etap oluşturma ile ilgili) | Helpdesk ticket analizi |
+
+---
+
+## ✅ Acceptance Test Scenarios
+
+### Scenario 1: Yeni Etap Başarıyla Oluşturma
+```gherkin
+Feature: Etap Oluşturma
+  As a Merkez Program Koordinatörü
+  I want to sıfırdan yeni bir etap oluşturmak
+  So that yeni politikaları hızlıca hayata geçirebilirim
+
+  Scenario: 10 Adımlı Sihirbazı Tamamlama
+    Given Kullanıcı "Merkez Program Koordinatörü" olarak giriş yapmıştır
+    And "Etap Yönetimi" sayfasındadır
+    When "Yeni Etap Oluştur" butonuna tıklar
+    Then 10 adımlı sihirbaz açılmalıdır
+    And İlerleme çubuğu "%10" göstermelidir
+
+    When Adım 1'de şu bilgileri girer:
+      | Alan              | Değer                                  |
+      | Etap Adı          | 2025 Test Seracılık Desteği            |
+      | Açıklama          | Test amaçlı etap                       |
+      | Başlangıç Tarihi  | 01.03.2025                             |
+      | Bitiş Tarihi      | 30.06.2025                             |
+      | Sektör            | Seracılık                              |
+    And "İleri: Bütçe" butonuna tıklar
+    Then Adım 2'ye geçiş yapılmalıdır
+    And İlerleme çubuğu "%20" göstermelidir
+
+    When Tüm 10 adımı doldurur
+    And Önizleme ekranında "Onaya Gönder" seçeneğini işaretler
+    And "Onaya Gönder" butonuna tıklar
+    Then "Etap başarıyla onaya gönderildi" mesajı görünmelidir
+    And Etap durumu "Onay Bekliyor" olmalıdır
+    And GMY'ye bildirim gitmelidir
+```
+
+### Scenario 2: Şablondan Etap Oluşturma
+```gherkin
+Scenario: Geçmiş Etaptan Şablon Kullanma
+    Given "Etap Yönetimi" sayfasında "Tamamlanmış Etaplar" listesi açıktır
+    And "2024 Seracılık Desteği" etabı mevcut
+    When "2024 Seracılık Desteği" etabının yanındaki "Şablon Olarak Kullan" butonuna tıklar
+    Then Yeni etap sihirbazı açılmalıdır
+    And Tüm form alanları şablondan doldurulmuş olmalıdır
+    And Etap adı "2024 Seracılık Desteği (Kopya)" olmalıdır
+
+    When Etap adını "2025 Seracılık Desteği v2" olarak değiştirir
+    And Bütçeyi "500M ₺"den "600M ₺"ye yükseltir
+    And Diğer adımları gözden geçirip onaylar
+    And "Taslak Olarak Kaydet" seçeneğini işaretler
+    Then "Etap taslak olarak kaydedildi" mesajı görünmelidir
+    And Taslak listesinde yeni etap görünmelidir
+```
+
+### Scenario 3: Kriterlerde %100 Ağırlık Validasyonu
+```gherkin
+Scenario: Kriter Ağırlıklarının %100 Olmaması
+    Given Sihirbazda "Adım 6: Değerlendirme Kriterleri" sayfasındayım
+    And Şu kriterler tanımlanmış:
+      | Kriter              | Ağırlık |
+      | Proje Fizibilitesi  | 40%     |
+      | Başvuran Yetkinliği | 25%     |
+      | Yatırım Kalitesi    | 20%     |
+    And Toplam ağırlık göstergesi "%85" gösteriyor (Kırmızı)
+
+    When "İleri: İl Limitleri" butonuna tıklarım
+    Then Hata mesajı görünmelidir: "Toplam kriter ağırlığı %100 olmalıdır. Şu an: %85"
+    And Sayfa geçişi engellenmelidir
+
+    When "Sosyal Etki" kriteri eklerim ve ağırlık "%15" girerim
+    Then Toplam ağırlık göstergesi "%100" göstermelidir (Yeşil)
+    And "İleri: İl Limitleri" butonu aktif hale gelmelidir
+```
+
+---
+
+**Hazırlayan**: Product Owner
+**Son Güncelleme**: 09.10.2025
+**Versiyon**: 1.0.0
+**İlgili Teknik Doküman**: KKYDP-MODERN-SISTEM/02-ETAP-YONETIMI.md
+
