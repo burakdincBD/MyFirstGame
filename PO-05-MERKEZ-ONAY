@@ -1,0 +1,343 @@
+# 📋 PO-05: MERKEZ ONAY VE KOORDİNASYON
+
+## 🎯 Executive Summary
+
+### Modül Amacı
+Merkez personelinin il onaylarını toplu değerlendirmesini, ulusal politika uyumunu kontrol etmesini, bütçe takibini ve nihai onay süreçlerini yönetmesini sağlamak.
+
+### Temel Özellikler
+- ✅ **Toplu Değerlendirme**: İller arası karşılaştırmalı analiz
+- ✅ **Otomatik Ön Kontrol**: Politika ve kural uyum kontrolü
+- ✅ **Bütçe Yönetimi**: Ulusal bütçe takibi ve limit kontrolü
+- ✅ **Risk Analizi**: Makro risk değerlendirmesi
+- ✅ **Hızlı Onay**: Toplu onay ve filtreleme
+- ✅ **Raporlama**: Üst yönetim ve bakanlık raporları
+- ✅ **Politika Parametreleri**: Dinamik kural tanımlama
+
+### İş Değeri
+- **%70 Hız Artışı**: Otomatik kontroller ve toplu işlemler
+- **%100 Politika Uyumu**: Tüm başvurular aynı kriterlere tabi
+- **%95 Bütçe Takibi**: Gerçek zamanlı bütçe kullanımı
+- **%50 Hata Azalması**: Otomatik validasyonlar
+
+---
+
+## 👥 User Personas
+
+### Persona 1: Uzman Dr. Zeynep (Merkez Değerlendirme Uzmanı)
+
+**Demografik Bilgiler:**
+- **Yaş**: 38
+- **Eğitim**: Doktora (Tarım Ekonomisi)
+- **Pozisyon**: Merkez Değerlendirme Uzmanı
+- **Deneyim**: 14 yıl kamu
+
+**Hedefler:**
+- İllerden gelen başvuruları hızlı kontrol etmek
+- Ulusal politikalara uyumu sağlamak
+- Bütçeyi verimli dağıtmak
+- İller arası adaleti gözetmek
+
+**Pain Points:**
+- Her gün 100+ başvuru onaya geliyor
+- İller farklı yorumlamalar yapabiliyor
+- Bütçe ani tükenebiliyor, stratejik projeler kaçabiliyor
+- Manuel kontroller çok zaman alıyor
+
+**Success Criteria:**
+- Günde 150+ başvuru değerlendirmeli
+- Tüm başvurular 3 gün içinde sonuçlanmalı
+- İller arası tutarlılık %95+
+- Bütçe kullanımı optimize edilmeli
+
+---
+
+### Persona 2: Genel Müdür Yardımcısı Kemal
+
+**Demografik Bilgiler:**
+- **Yaş**: 52
+- **Eğitim**: Yüksek Lisans
+- **Pozisyon**: GMY
+- **Deneyim**: 28 yıl kamu
+
+**Hedefler:**
+- Ulusal tarım politikalarını hayata geçirmek
+- Kaynakları öncelikli alanlara yönlendirmek
+- Bakanlığa düzenli raporlama
+- Başarı oranını artırmak
+
+**Pain Points:**
+- Detaya inmeden makro görüntü istiyorsam
+- Riskli başvurular geç fark ediliyor
+- Bakanlık ani rapor isteyebiliyor
+- İl performanslarını takip zor
+
+**Success Criteria:**
+- Haftalık özet raporlar
+- Risk uyarıları anlık
+- Mobil erişim
+- Bakanlık raporları otomatik
+
+---
+
+## 📖 User Stories
+
+### Epic 1: Başvuru İnceleme ve Kontrol
+
+#### US-501: Merkez Onay Kuyruğu
+
+**As a** Merkez Uzmanı (Zeynep)
+**I want** illerden gelen onayları filtreleyerek görmek
+**So that** öncelikli başvurulara odaklanabileyim
+
+**Acceptance Criteria:**
+- ✅ Liste: İl, Başvuran, Tutar, İl Puanı, Risk, Kalan Gün
+- ✅ Filtreler: İl, Tutar aralığı, Risk seviyesi, Sektör
+- ✅ Sıralama: Tutar (büyükten küçüğe), Risk (yüksekten düşüğe), Tarih
+- ✅ Toplu seçim: Checkbox ile çoklu seçim
+- ✅ Toplu işlemler: Onayla, Reddet, İade et
+- ✅ Arama: Başvuru no, TC kimlik, firma adı
+
+**Story Points:** 8
+**Priority:** CRITICAL
+**Sprint:** 15
+
+---
+
+#### US-502: Otomatik Ön Kontrol (Merkez)
+
+**As a** Merkez Uzmanı (Zeynep)
+**I want** sistemin otomatik kontrol yapmasını
+**So that** temel uygunsuzlukları hızlıca tespit edebiliyim
+
+**Acceptance Criteria:**
+- ✅ Kontrol listesi: Bütçe limiti, Politika parametreleri, Puanlama tutarlılığı, Döküman eksiksizliği
+- ✅ Her kontrol: ✅ Geçti / ❌ Geçemedi / ⚠️ Uyarı
+- ✅ Geçemezse: Otomatik red önerisi + gerekçe
+- ✅ Uyarıda: Manuel inceleme gerekir
+- ✅ Kontrol raporu: PDF çıktısı
+- ✅ Geçti: "Hızlı Onay" seçeneği aktif
+
+**Story Points:** 13
+**Priority:** CRITICAL
+**Sprint:** 15
+
+---
+
+#### US-503: İller Arası Karşılaştırma
+
+**As a** Merkez Uzmanı (Zeynep)
+**I want** aynı sektördeki başvuruları karşılaştırmak
+**So that** adil değerlendirme yapabileyim
+
+**Acceptance Criteria:**
+- ✅ Karşılaştırma tablosu: Yan yana 2-5 başvuru
+- ✅ Gösterilen alanlar: Tutar, Puan, Risk, İl değerlendirmesi, Benzerlik skoru
+- ✅ Highlight: Anormal değerler (ortalamadan %30+ farklı)
+- ✅ Grafik: Radar chart ile çok boyutlu karşılaştırma
+- ✅ Notlar: Karşılaştırma notu ekleme
+- ✅ Öneri: "Bu başvuru benzerlerine göre yüksek/düşük puanlı"
+
+**Story Points:** 13
+**Priority:** HIGH
+**Sprint:** 16
+
+---
+
+### Epic 2: Bütçe ve Kaynak Yönetimi
+
+#### US-504: Ulusal Bütçe Dashboard
+
+**As a** GMY (Kemal)
+**I want** ulusal bütçe durumunu görmek
+**So that** kaynakları stratejik yönetebiliyim
+
+**Acceptance Criteria:**
+- ✅ Toplam bütçe göstergesi: Kullanılan, Rezerve, Kalan
+- ✅ İl bazlı dağılım: Harita üzerinde heat map
+- ✅ Sektör bazlı: Pasta grafik
+- ✅ Zaman serisi: Son 12 ay bütçe kullanımı
+- ✅ Tahmin: "Mevcut hızla X gün sonra bütçe tükenir" uyarısı
+- ✅ Export: Excel, PDF
+
+**Story Points:** 13
+**Priority:** HIGH
+**Sprint:** 16
+
+---
+
+#### US-505: Bütçe Limiti ve Uyarılar
+
+**As a** Merkez Uzmanı (Zeynep)
+**I want** bütçe limitlerini kontrol etmek
+**So that** bütçe aşımı olmadan onay verebiliyim
+
+**Acceptance Criteria:**
+- ✅ Her başvuruda: Kalan bütçe gösterimi
+- ✅ Bütçe yetersizse: Kırmızı uyarı, onay engellenebilir
+- ✅ Eşik uyarıları: %80, %90, %95, %100 seviyelerinde bildirim
+- ✅ Rezervasyon: Onay verince bütçe rezerve edilir
+- ✅ Otomatik serbest bırakma: Red edilince bütçe geri açılır
+- ✅ İl bazlı kontrol: Her il için ayrı limit kontrolü
+
+**Story Points:** 8
+**Priority:** CRITICAL
+**Sprint:** 16
+
+---
+
+### Epic 3: Karar ve Onay
+
+#### US-506: Merkez Onay İşlemi
+
+**As a** Merkez Uzmanı (Zeynep)
+**I want** başvuruyu onaylamak veya reddetmek
+**So that** süreç sonuçlansın
+
+**Acceptance Criteria:**
+- ✅ Karar seçenekleri: Onayla, Reddet, İle İade Et
+- ✅ Onay tutarı: İl önerisini değiştirebilme
+- ✅ Gerekçe: Zorunlu açıklama alanı (min 30 karakter)
+- ✅ E-imza: Onay işlemi e-imza ile
+- ✅ Bildirimler: İl, Başvuran, İstatistik servisleri
+- ✅ Toplu onay: Seçilenleri toplu onayla
+
+**Story Points:** 8
+**Priority:** CRITICAL
+**Sprint:** 17
+
+---
+
+#### US-507: GMY Nihai Onayı
+
+**As a** GMY (Kemal)
+**I want** yüksek tutarlı başvuruları son onaylamak
+**So that** stratejik kararları ben verebiliyim
+
+**Acceptance Criteria:**
+- ✅ Eşik: 200.000₺ üzeri başvurular GMY onayına gelir
+- ✅ Özet görünüm: Tüm değerlendirme süreci özeti
+- ✅ Hızlı karar: Uzman önerisi vurgulanır
+- ✅ Mobil onay: Mobil cihazdan e-imza
+- ✅ Delegasyon: Yardımcısına yetki devri
+- ✅ SLA: 2 iş günü içinde karar
+
+**Story Points:** 8
+**Priority:** HIGH
+**Sprint:** 17
+
+---
+
+## 🔄 İş Akışları (Workflows)
+
+### Workflow 1: Merkez Onay Süreci
+
+```mermaid
+sequenceDiagram
+    participant IL as İl Müdürlüğü
+    participant SYS as Sistem
+    participant MU as Merkez Uzmanı
+    participant GMY as GMY
+    participant BS as Başvuran
+
+    IL->>SYS: İl Onayı Gönder
+    SYS->>SYS: Otomatik Ön Kontrol
+
+    alt Ön Kontrol Başarısız
+        SYS->>IL: Otomatik Red + Gerekçe
+        SYS->>BS: Red Bildirimi
+    else Ön Kontrol Başarılı
+        SYS->>MU: Kuyrukta Bildirim
+
+        MU->>SYS: Başvuruyu İncele
+        MU->>MU: İller Arası Karşılaştır
+        MU->>MU: Risk ve Bütçe Kontrol
+
+        alt Tutar < 200.000₺
+            MU->>SYS: Karar Ver (Onayla/Reddet/İade)
+
+            alt Onay
+                SYS->>BS: Sözleşme Gönder
+                SYS->>IL: Onay Bildirimi
+            else Red
+                SYS->>BS: Red Bildirimi
+                SYS->>IL: Red Bildirimi
+            else İade
+                SYS->>IL: İade Bildirimi + Not
+            end
+
+        else Tutar >= 200.000₺
+            MU->>SYS: Öneri Yaz
+            SYS->>GMY: GMY Onayına Gönder
+
+            GMY->>SYS: İncele
+            GMY->>SYS: Nihai Karar + E-imza
+
+            alt GMY Onay
+                SYS->>BS: Sözleşme Gönder
+                SYS->>IL: Onay Bildirimi
+                SYS->>MU: Bilgilendir
+            else GMY Red
+                SYS->>BS: Red Bildirimi
+                SYS->>IL: Red Bildirimi
+                SYS->>MU: Bilgilendir
+            end
+        end
+    end
+```
+
+---
+
+### Workflow 2: Bütçe Takip ve Rezervasyon
+
+```mermaid
+stateDiagram-v2
+    [*] --> BütçeKontrol: Onay Talebi
+
+    BütçeKontrol --> BütçeYeterli: Kalan > Talep
+    BütçeKontrol --> BütçeYetersiz: Kalan < Talep
+
+    BütçeYetersiz --> UyarıGönder: Merkez Uzmanına
+    UyarıGönder --> ManuelKarar: Uzman Değerlendir
+
+    ManuelKarar --> ÖncelikVer: Stratejik Proje
+    ManuelKarar --> Reddet: Düşük Öncelik
+
+    BütçeYeterli --> Rezerve: Bütçe Rezerve Et
+    ÖncelikVer --> Rezerve
+
+    Rezerve --> OnayBekle: Karar Bekliyor
+
+    OnayBekle --> Onayla: Onaylandı
+    OnayBekle --> Reddet: Reddedildi
+
+    Onayla --> BütçeKullan: Kesin Tahsis
+    Reddet --> BütçeSerbest: Rezervasyonu Kaldır
+
+    BütçeKullan --> [*]
+    BütçeSerbest --> [*]
+
+    note right of Rezerve
+        Rezervasyon: 7 gün
+        Sonra otomatik serbest
+    end note
+```
+
+---
+
+## 📊 Success Metrics
+
+| Metrik | Hedef | Ölçüm Yöntemi |
+|--------|-------|---------------|
+| **Ortalama Onay Süresi** | < 3 gün | Merkeze gelme - Karar arası |
+| **Otomatik Red Oranı** | %10-15 | Ön kontrolde red / Toplam |
+| **Toplu Onay Kullanımı** | > %60 | Toplu onay / Tek tek onay |
+| **Bütçe Kullanım Verimliliği** | > %92 | Kullanılan / Toplam |
+| **İller Arası Tutarlılık** | > %90 | Benzer projeler puan farkı < %15 |
+| **GMY Müdahale Oranı** | < %5 | GMY red/değiştirme / Toplam |
+
+---
+
+**Hazırlayan**: Product Owner
+**Son Güncelleme**: 09.10.2025
+**Versiyon**: 1.0.0
